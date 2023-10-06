@@ -1,4 +1,4 @@
-"use server"
+
 import { NextResponse } from "next/server";
 import Product from "@/lib/models/product.model";
 import { connectToDB } from "@/lib/mongoose";

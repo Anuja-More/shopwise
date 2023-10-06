@@ -1,13 +1,15 @@
-import Product from "@/lib/models/product.model";
+"use server"
 import { NextResponse } from "next/server";
+import Product from "@/lib/models/product.model";
 import { connectToDB } from "@/lib/mongoose";
 import { scrapeAmazonProduct } from "@/lib/scraper/index";
 import { getEmailNotifType } from "@/lib/utils";
 import { getAveragePrice, getHighestPrice, getLowestPrice } from "@/lib/utils";
 import { generateEmailBody, sendEmail } from "@/lib/nodemailer/index";
-export const maxDuration = 5; 
+export const maxDuration = 300;
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
 export async function GET(request: Request) {
   try {
     connectToDB();
@@ -18,7 +20,7 @@ export async function GET(request: Request) {
 
     // ======================== 1 SCRAPE LATEST PRODUCT DETAILS & UPDATE DB
     const updatedProducts = await Promise.all(
-      products.map(async (currentProduct : any) => {
+      products.map(async (currentProduct: any) => {
         // Scrape product
         const scrapedProduct = await scrapeAmazonProduct(currentProduct.url);
 
@@ -27,7 +29,7 @@ export async function GET(request: Request) {
         const updatedPriceHistory = [
           ...currentProduct.priceHistory,
           {
-            price: scrapedProduct?.currentPrice,
+            price: scrapedProduct.currentPrice,
           },
         ];
 

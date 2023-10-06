@@ -6,7 +6,7 @@ import { scrapeAmazonProduct } from "@/lib/scraper/index";
 import { getEmailNotifType } from "@/lib/utils";
 import { getAveragePrice, getHighestPrice, getLowestPrice } from "@/lib/utils";
 import { generateEmailBody, sendEmail } from "@/lib/nodemailer/index";
-export const maxDuration = 300;
+export const maxDuration = 10;
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 

@@ -1,11 +1,10 @@
-
-import { NextResponse } from "next/server";
 import Product from "@/lib/models/product.model";
 import { connectToDB } from "@/lib/mongoose";
-import { scrapeAmazonProduct } from "@/lib/scraper/index";
-import { getEmailNotifType } from "@/lib/utils";
 import { getAveragePrice, getHighestPrice, getLowestPrice } from "@/lib/utils";
+import { scrapeAmazonProduct } from "@/lib/scraper";
+import { getEmailNotifType } from "@/lib/utils";
 import { generateEmailBody, sendEmail } from "@/lib/nodemailer/index";
+import { NextResponse } from "next/server";
 export const maxDuration = 10;
 export const dynamic = "force-dynamic";
 export const revalidate = 0;

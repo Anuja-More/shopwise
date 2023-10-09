@@ -104,7 +104,7 @@ const ProductDetails = async ({params :{id}}:Props) => {
                  <PriceInfoCard
                   title="Current Price"
                   iconSrc="/assets/icons/price-tag.svg"
-                  value={`${product?.currency} ${formatNumber(product?.originalPrice)}`}
+                  value={`${product?.currency} ${formatNumber(product?.lowestPrice)}`}
                   />
                   <PriceInfoCard
                   title="Highest Price"

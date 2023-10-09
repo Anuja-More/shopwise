@@ -5,7 +5,8 @@ import { scrapeAmazonProduct } from "@/lib/scraper";
 import { getEmailNotifType } from "@/lib/utils";
 import { generateEmailBody, sendEmail } from "@/lib/nodemailer/index";
 import { NextResponse } from "next/server";
-export const maxDuration = 10;
+
+export const maxDuration = 300; // This function can run for a maximum of 300 seconds
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
@@ -19,7 +20,7 @@ export async function GET(request: Request) {
 
     // ======================== 1 SCRAPE LATEST PRODUCT DETAILS & UPDATE DB
     const updatedProducts = await Promise.all(
-      products.map(async (currentProduct: any) => {
+      products.map(async (currentProduct : any) => {
         // Scrape product
         const scrapedProduct = await scrapeAmazonProduct(currentProduct.url);
 
